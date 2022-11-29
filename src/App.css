@@ -36,3 +36,16 @@
     transform: rotate(360deg);
   }
 }
+
+h1, h2, h3, h4, h5, h6, p {
+  margin: 0;
+}
+
+.p-4 {
+  padding: 1rem;
+}
+
+.kwMenuWrapper {
+  padding-left: 10px;
+  padding-right: 10px;
+}
