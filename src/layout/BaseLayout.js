@@ -19,13 +19,13 @@ function getSidebarItem(route) {
 }
 
 function getSidebarItems(routes) {
-    return routes.map(route => route.sidebar ? getSidebarItem(route) : null);
+    return routes
+        .map(route => route.sidebar ? getSidebarItem(route) : null)
+        .filter(el => el !== null);
 }
 
 const BaseLayout = ({ children }) => {
     const navigate = useNavigate();
-
-    console.log('render...')
 
     const items = [
         {
