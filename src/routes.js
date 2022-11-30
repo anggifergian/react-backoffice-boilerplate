@@ -13,8 +13,24 @@ import VcnList from './pages/VcnList';
 import VcnBalanceAdjustment from './pages/VcnBalanceAdjustment';
 
 import Neo from './pages/Neo';
+import Login from './pages/Login';
+import Dashboard from './pages/Dashboard';
+import ForgetPassword from './pages/ForgetPassword';
+
+export const publicRoutes = [
+    { key: 'base', path: '/*', element: <Login /> },
+    { key: 'login', path: '/login', element: <Login /> },
+    { key: 'forget-password', path: '/forget-password', element: <ForgetPassword /> },
+]
 
 export const privateRoutes = [
+    {
+        key: 'dashboard',
+        label: 'Dashboard',
+        path: '/dashboard',
+        element: <Dashboard />,
+        sidebar: true,
+    },
     {
         key: 'admin',
         label: 'Admin',
