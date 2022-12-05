@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Col, Layout, Menu, Row } from 'antd';
 
 import { privateRoutes } from '../routes';
+import useSelectedPath from '../hooks/useSelectedPath';
 
 const { Header, Content, Sider } = Layout;
 
@@ -26,6 +27,7 @@ function getSidebarItems(routes) {
 
 const BaseLayout = ({ children }) => {
     const navigate = useNavigate();
+    const path = useSelectedPath();
 
     const items = [
         {
@@ -81,6 +83,8 @@ const BaseLayout = ({ children }) => {
                         theme={THEME}
                         items={items}
                         onClick={handleNavigate}
+                        defaultSelectedKeys={[path.selectedMenu]}
+                        defaultOpenKeys={path.openedKeys}
                     />
                 </Sider>
                 <Layout style={{ padding: '0 24px 24px' }}>
@@ -91,6 +95,7 @@ const BaseLayout = ({ children }) => {
                             minHeight: 280,
                         }}
                     >
+                        <div style={{ paddingBottom: 10 }}>defaultSelectedKeys: <span style={{ fontStyle: 'italic' }}>{path.selectedMenu}</span></div>
                         {children}
                     </Content>
                 </Layout>

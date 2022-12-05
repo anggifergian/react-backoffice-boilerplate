@@ -44,14 +44,14 @@ export const privateRoutes = [
                     {
                         key: 'neo',
                         label: 'Neo',
-                        path: '/department/neo',
+                        path: '/admin/department/neo',
                         element: <Neo />,
                         sidebar: true,
                     },
                     {
                         key: 'payment',
                         label: 'Payment',
-                        path: '/department/payment',
+                        path: '/admin/department/payment',
                         element: <AdminMenu />,
                         sidebar: true,
                     }
