@@ -83,7 +83,7 @@ const BaseLayout = ({ children }) => {
                         theme={THEME}
                         items={items}
                         onClick={handleNavigate}
-                        defaultSelectedKeys={[path.selectedMenu]}
+                        defaultSelectedKeys={[path.selectedKey]}
                         defaultOpenKeys={path.openedKeys}
                     />
                 </Sider>
@@ -95,7 +95,7 @@ const BaseLayout = ({ children }) => {
                             minHeight: 280,
                         }}
                     >
-                        <div style={{ paddingBottom: 10 }}>defaultSelectedKeys: <span style={{ fontStyle: 'italic' }}>{path.selectedMenu}</span></div>
+                        <div style={{ paddingBottom: 10 }}>defaultSelectedKeys: <span style={{ fontStyle: 'italic' }}>{path.selectedKey}</span></div>
                         {children}
                     </Content>
                 </Layout>
