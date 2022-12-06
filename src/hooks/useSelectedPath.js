@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import { privateRoutes } from '../routes';
@@ -6,16 +5,11 @@ import { privateRoutes } from '../routes';
 const useSelectedPath = () => {
     const { pathname } = useLocation();
 
-    const [state, setState] = useState({
-        selectedMenu: '',
-        openedKeys: []
-    })
-
     const findRoute = (pathname, routes) => {
         return routes.find(route => route.path === pathname);
     }
 
-    useEffect(() => {
+    const getDefaultPath = () => {
         const paths = pathname.split('/').filter(path => path);
 
         let initialRoutes = privateRoutes;
@@ -32,12 +26,18 @@ const useSelectedPath = () => {
         const { key } = findRoute(pathname, initialRoutes);
         const openedKeys = paths.length > 1 ? keys : [key];
         
-        setState({ selectedMenu: key, openedKeys });
-    }, [pathname])
+        return {
+            selectedKey: key,
+            openedKeys,
+        }
+    }
 
-    console.log(state)
+    const { selectedKey, openedKeys } = getDefaultPath();
 
-    return state;
+    return {
+        selectedKey,
+        openedKeys,
+    };
 }
 
 export default useSelectedPath
