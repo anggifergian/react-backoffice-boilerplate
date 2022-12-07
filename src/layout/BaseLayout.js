@@ -1,9 +1,12 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Col, Layout, Menu, Row } from 'antd';
+import { useDispatch } from 'react-redux';
+import { Button, Col, Layout, Menu, Row } from 'antd';
+import { LogoutOutlined} from  '@ant-design/icons';
 
 import { privateRoutes } from '../routes';
 import useSelectedPath from '../hooks/useSelectedPath';
+import { login } from '../redux/appReducer';
 
 const { Header, Content, Sider } = Layout;
 
@@ -26,6 +29,7 @@ function getSidebarItems(routes) {
 }
 
 const BaseLayout = ({ children }) => {
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     const path = useSelectedPath();
 
@@ -63,12 +67,28 @@ const BaseLayout = ({ children }) => {
         onNavigate(selectedRoutes, key);
     }
 
+    const handleLogout = () => {
+        dispatch(login({ status: false }));
+    }
+
     return (
         <Layout style={{ height: '100vh' }}>
-            <Header>
+            <Header style={{ backgroundColor: 'white', borderBottom: '2px solid #ccc', boxShadow: '2px 2px 2px 1px rgba(0, 0, 0, 0.2)' }}>
                 <Row justify='space-between'>
-                    <Col span={6}>Logo</Col>
-                    <Col span={6}>Menu</Col>
+                    <Col span={6}>
+                        <label style={{ fontWeight: '600', fontSize: 20 }}>KoinWorks</label>
+                    </Col>
+                    <Col span={6}>
+                        <Row justify='end'>
+                            <Col>
+                                <Button 
+                                    type='text'
+                                    icon={<LogoutOutlined style={{ fontSize: 16 }} />}
+                                    onClick={handleLogout}
+                                />
+                            </Col>
+                        </Row>
+                    </Col>
                 </Row>
             </Header>
             <Layout>

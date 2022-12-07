@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Routes, Route } from 'react-router-dom';
 
 import './App.css';
@@ -7,9 +7,7 @@ import { privateRoutes, publicRoutes } from './routes';
 import { RootRoute } from './utils/RootRoute';
 
 function App() {
-  const [localState] = useState({
-    isLoggedIn: true
-  })
+  const App = useSelector(state => state.App);
 
   const renderRouter = (route) => {
     if (route.submenu) {
@@ -28,14 +26,14 @@ function App() {
   return (
     <Routes>
       <Route element={(
-        <RootRoute isLoggedIn={localState.isLoggedIn} />
+        <RootRoute isLoggedIn={App.isLoggedIn} />
       )}>
         {publicRoutes.map(route => renderRouter(route))}
       </Route>
       <Route element={(
         <RootRoute 
           isProtected 
-          isLoggedIn={localState.isLoggedIn} 
+          isLoggedIn={App.isLoggedIn} 
         />
       )}>
         {privateRoutes.map(route => renderRouter(route))}
